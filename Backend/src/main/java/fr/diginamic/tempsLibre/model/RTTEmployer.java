@@ -20,4 +20,8 @@ public class RTTEmployer {
 
     @Column(name = "DATE", nullable = false)
     private LocalDateTime date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_RTT_EMPLOYER_YEAR", nullable = true)
+    private RTTEmployerYear idRTTEmployerYear;
 }
