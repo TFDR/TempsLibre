@@ -21,16 +21,12 @@ public class UserService {
     }
 
     public List<UserDTO> getAll() {
-
         List<UserDTO> users
                 = userRepository.findAll()
                 .stream()
                 .map(userMapper::toDTO)
                 .toList();
-
-        if (users.isEmpty()) {
-            throw new RuntimeException("No users found");
-        }
+        if (users.isEmpty()) throw new RuntimeException("No users found");
 
         return users;
     }
@@ -43,9 +39,8 @@ public class UserService {
 
     public UserDTO findByEmail(String email) {
         User user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new RuntimeException("User not found with email: " + email);
-        }
+        if (user == null) throw new RuntimeException("User not found with email: " + email);
+
         return userMapper.toDTO(user);
     }
 
@@ -59,35 +54,19 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 
-        if (userDTO.getFirstname() != null) {
-            user.setFirstname(userDTO.getFirstname());
-        }
-        if (userDTO.getLastname() != null) {
-            user.setLastname(userDTO.getLastname());
-        }
-        if (userDTO.getEmail() != null) {
-            user.setEmail(userDTO.getEmail());
-        }
-        if (userDTO.getPhoneNumber() != null) {
-            user.setPhoneNumber(userDTO.getPhoneNumber());
-        }
-        if (userDTO.getGender() != null) {
-            user.setGender(userDTO.getGender());
-        }
-        if (userDTO.getRole() != null) {
-            user.setRole(userDTO.getRole());
-        }
-        if (userDTO.getStatus() != null) {
-            user.setStatus(userDTO.getStatus());
-        }
-        if (userDTO.getRemainingLeaveDaysCounter() != 0) {
-            user.setRemainingLeaveDaysCounter(userDTO.getRemainingLeaveDaysCounter());
-        }
-
+        if (userDTO.getFirstname() != null) user.setFirstname(userDTO.getFirstname());
+        if (userDTO.getLastname() != null) user.setLastname(userDTO.getLastname());
+        if (userDTO.getEmail() != null) user.setEmail(userDTO.getEmail());
+        if (userDTO.getPhoneNumber() != null) user.setPhoneNumber(userDTO.getPhoneNumber());
+        if (userDTO.getGender() != null) user.setGender(userDTO.getGender());
+        if (userDTO.getRole() != null) user.setRole(userDTO.getRole());
+        if (userDTO.getStatus() != null) user.setStatus(userDTO.getStatus());
+        if (userDTO.getRemainingLeaveDaysCounter() != 0) user.setRemainingLeaveDaysCounter(userDTO.getRemainingLeaveDaysCounter());
         User updatedUser = userRepository.save(user);
 
         return userMapper.toDTO(updatedUser);
     }
+
     public void deleteUser(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));

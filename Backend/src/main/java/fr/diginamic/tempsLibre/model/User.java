@@ -16,7 +16,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "users")
 @SQLDelete(sql = "UPDATE users SET is_deleted = true, deleted_at = NOW() WHERE id = ?")
-@Where(clause = "is_deleted = false") // xet annotation permet d'exclure tous les users qui ont is_deleted à true
+@Where(clause = "is_deleted = false") // cette annotation permet d'exclure tous les users qui ont is_deleted à true
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
