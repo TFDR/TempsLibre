@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 @SQLDelete(sql = "UPDATE users SET is_deleted = true, deleted_at = NOW() WHERE id = ?")
@@ -46,9 +47,10 @@ public class User {
     @Column(nullable = false)
     private Gender gender;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private Role role = Role.EMPLOYEE;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -64,6 +66,7 @@ public class User {
     @Column(nullable = false)
     private EmployeeStatus status;
 
+    @Builder.Default
     @Column(nullable = false)
-    private int remainingLeaveDaysCounter;
+    private Integer remainingLeaveDaysCounter = 25;
 }
