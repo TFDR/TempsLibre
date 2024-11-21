@@ -4,20 +4,25 @@ import fr.diginamic.tempsLibre.enums.EmployeeStatus;
 import fr.diginamic.tempsLibre.enums.Gender;
 import fr.diginamic.tempsLibre.enums.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import java.time.LocalDateTime;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 @SQLDelete(sql = "UPDATE users SET is_deleted = true, deleted_at = NOW() WHERE id = ?")
-@Where(clause = "is_deleted = false") // xet annotation permet d'exclure tous les users qui ont is_deleted à true
+@Where(clause = "is_deleted = false") // Cette annotation permet d'exclure tous les users qui ont is_deleted à true
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

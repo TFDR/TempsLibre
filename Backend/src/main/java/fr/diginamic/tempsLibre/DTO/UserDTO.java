@@ -15,5 +15,5 @@ public class UserDTO {
     private Gender gender;
     private Role role;
     private EmployeeStatus status;
-    private int remainingLeaveDaysCounter;
+    private Integer remainingLeaveDaysCounter;
 }

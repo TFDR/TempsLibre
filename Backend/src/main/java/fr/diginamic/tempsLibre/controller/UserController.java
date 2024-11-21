@@ -1,6 +1,7 @@
 package fr.diginamic.tempsLibre.controller;
 
 import fr.diginamic.tempsLibre.DTO.UserDTO;
+import fr.diginamic.tempsLibre.enums.Role;
 import fr.diginamic.tempsLibre.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
