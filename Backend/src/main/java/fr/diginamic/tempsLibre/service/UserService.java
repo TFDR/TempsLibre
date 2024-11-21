@@ -1,6 +1,7 @@
 package fr.diginamic.tempsLibre.service;
 
 import fr.diginamic.tempsLibre.DTO.UserDTO;
+import fr.diginamic.tempsLibre.enums.Role;
 import fr.diginamic.tempsLibre.mapper.UserMapper;
 import fr.diginamic.tempsLibre.model.User;
 import fr.diginamic.tempsLibre.repository.UserRepository;
