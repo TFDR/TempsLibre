@@ -69,4 +69,8 @@ public class User {
     @Builder.Default
     @Column(nullable = false)
     private Integer remainingLeaveDaysCounter = 25;
+
+    @ManyToOne
+    @JoinColumn(name="department_id", nullable=false)
+    private Department department;
 }
