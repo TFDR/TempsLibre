@@ -1,7 +1,10 @@
 package fr.diginamic.tempsLibre.controller;
 
 import fr.diginamic.tempsLibre.DTO.UserDTO;
+import fr.diginamic.tempsLibre.enums.Role;
 import fr.diginamic.tempsLibre.service.UserService;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,12 +58,8 @@ public class UserController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-        try {
             UserDTO updatedUser = userService.updateUser(id, userDTO);
             return ResponseEntity.ok(updatedUser);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).body(null);
-        }
     }
 
     @DeleteMapping("/{id}")
