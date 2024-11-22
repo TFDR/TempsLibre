@@ -4,21 +4,28 @@ import fr.diginamic.tempsLibre.enums.EmployeeStatus;
 import fr.diginamic.tempsLibre.enums.Gender;
 import fr.diginamic.tempsLibre.enums.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import java.time.LocalDateTime;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
-@Table(name = "users")
-@SQLDelete(sql = "UPDATE users SET is_deleted = true, deleted_at = NOW() WHERE id = ?")
-@Where(clause = "is_deleted = false") // xet annotation permet d'exclure tous les users qui ont is_deleted à true
+@Table(name = "USERS")
+@SQLDelete(sql = "UPDATE USERS SET is_deleted = true, deleted_at = NOW() WHERE id = ?")
+@Where(clause = "is_deleted = false") // Cette annotation permet d'exclure tous les users qui ont is_deleted à true
 public class User {
+
     @Id
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -41,9 +48,10 @@ public class User {
     @Column(nullable = false)
     private Gender gender;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private Role role = Role.EMPLOYEE;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -52,13 +60,18 @@ public class User {
     @Column(nullable = false)
     private Boolean isDeleted = false;
 
-    @Column
+    @Column(nullable = true)
     private LocalDateTime deletedAt;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EmployeeStatus status;
 
+    @Builder.Default
     @Column(nullable = false)
-    private int remainingLeaveDaysCounter;
+    private Integer remainingLeaveDaysCounter = 25;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="ID_DEPARTMENT", nullable=false)
+    private Department department;
 }
