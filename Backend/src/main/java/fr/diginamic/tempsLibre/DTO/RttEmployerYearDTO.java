@@ -3,7 +3,7 @@ package fr.diginamic.tempsLibre.DTO;
 import lombok.Data;
 
 @Data
-public class RTTEmployerYearDTO {
+public class RttEmployerYearDTO {
     private Long id;
     private Integer initialCounter;
     private Integer remainingCounter;

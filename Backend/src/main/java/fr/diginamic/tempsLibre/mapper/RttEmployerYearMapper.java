@@ -1,14 +1,14 @@
 package fr.diginamic.tempsLibre.mapper;
 
-import fr.diginamic.tempsLibre.DTO.RTTEmployerYearDTO;
-import fr.diginamic.tempsLibre.model.RTTEmployerYear;
+import fr.diginamic.tempsLibre.DTO.RttEmployerYearDTO;
+import fr.diginamic.tempsLibre.model.RttEmployerYear;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RTTEmployerYearMapper {
 
-    public RTTEmployerYear toEntity(RTTEmployerYearDTO rttEmployerYearDTO) {
-        RTTEmployerYear rttEmployerYear =new RTTEmployerYear();
+    public RttEmployerYear toEntity(RttEmployerYearDTO rttEmployerYearDTO) {
+        RttEmployerYear rttEmployerYear =new RttEmployerYear();
         rttEmployerYear.setId(rttEmployerYearDTO.getId());
         rttEmployerYear.setInitialCounter(rttEmployerYearDTO.getInitialCounter());
         rttEmployerYear.setRemainingCounter(rttEmployerYearDTO.getRemainingCounter());
@@ -16,8 +16,8 @@ public class RTTEmployerYearMapper {
         return rttEmployerYear;
     }
 
-    public RTTEmployerYearDTO toDTO(RTTEmployerYear rttEmployerYear) {
-        RTTEmployerYearDTO rttEmployerYearDTO =new RTTEmployerYearDTO();
+    public RttEmployerYearDTO toDTO(RttEmployerYear rttEmployerYear) {
+        RttEmployerYearDTO rttEmployerYearDTO =new RttEmployerYearDTO();
         rttEmployerYearDTO.setId(rttEmployerYear.getId());
         rttEmployerYearDTO.setInitialCounter(rttEmployerYear.getInitialCounter());
         rttEmployerYearDTO.setRemainingCounter(rttEmployerYear.getRemainingCounter());
