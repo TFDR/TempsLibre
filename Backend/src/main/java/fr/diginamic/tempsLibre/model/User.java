@@ -19,12 +19,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "users")
-@SQLDelete(sql = "UPDATE users SET is_deleted = true, deleted_at = NOW() WHERE id = ?")
+@Table(name = "USERS")
+@SQLDelete(sql = "UPDATE USERS SET is_deleted = true, deleted_at = NOW() WHERE id = ?")
 @Where(clause = "is_deleted = false") // Cette annotation permet d'exclure tous les users qui ont is_deleted à true
 public class User {
 
     @Id
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -59,7 +60,7 @@ public class User {
     @Column(nullable = false)
     private Boolean isDeleted = false;
 
-    @Column
+    @Column(nullable = true)
     private LocalDateTime deletedAt;
 
     @Enumerated(EnumType.STRING)
@@ -69,4 +70,8 @@ public class User {
     @Builder.Default
     @Column(nullable = false)
     private Integer remainingLeaveDaysCounter = 25;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="ID_DEPARTMENT", nullable=false)
+    private Department department;
 }
