@@ -1,9 +1,7 @@
 package fr.diginamic.tempsLibre.mapper;
 
 import fr.diginamic.tempsLibre.DTO.AbsenceTypeDTO;
-import fr.diginamic.tempsLibre.DTO.UserDTO;
 import fr.diginamic.tempsLibre.model.AbsenceType;
-import fr.diginamic.tempsLibre.model.User;
 import org.springframework.stereotype.Component;
 
 @Component

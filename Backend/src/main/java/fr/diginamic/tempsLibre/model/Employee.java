@@ -19,10 +19,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "USERS")
-@SQLDelete(sql = "UPDATE USERS SET is_deleted = true, deleted_at = NOW() WHERE id = ?")
-@Where(clause = "is_deleted = false") // Cette annotation permet d'exclure tous les users qui ont is_deleted à true
-public class User {
+@Table(name = "EMPLOYEE")
+@SQLDelete(sql = "UPDATE EMPLOYEE SET is_deleted = true, deleted_at = NOW() WHERE id = ?")
+@Where(clause = "is_deleted = false") // Cette annotation permet d'exclure tous les employés qui ont is_deleted à true
+public class Employee {
 
     @Id
     @Column(name = "ID", nullable = false)
