@@ -20,7 +20,7 @@ public class RttEmployer {
     @Column(name = "DATE", nullable = false)
     private LocalDate date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_RTT_EMPLOYER_YEAR", nullable = false)
     private RttEmployerYear rttEmployerYear;
 }
