@@ -2,7 +2,9 @@ package fr.diginamic.tempsLibre.service;
 
 import fr.diginamic.tempsLibre.DTO.EmployeeDTO;
 import fr.diginamic.tempsLibre.mapper.EmployeeMapper;
+import fr.diginamic.tempsLibre.model.Department;
 import fr.diginamic.tempsLibre.model.Employee;
+import fr.diginamic.tempsLibre.repository.DepartmentRepository;
 import fr.diginamic.tempsLibre.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -13,10 +15,12 @@ import java.util.List;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final DepartmentRepository departmentRepository;
     private final EmployeeMapper employeeMapper;
 
-    public EmployeeService(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
+    public EmployeeService(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository, EmployeeMapper employeeMapper) {
         this.employeeRepository = employeeRepository;
+        this.departmentRepository = departmentRepository;
         this.employeeMapper = employeeMapper;
     }
 
@@ -80,8 +84,14 @@ public class EmployeeService {
         if (employeeDTO.getStatus() != null) {
             employee.setStatus(employeeDTO.getStatus());
         }
-        if (employeeDTO.getRemainingLeaveDaysCounter() != 0) {
+        if (employeeDTO.getRemainingLeaveDaysCounter() != null) {
             employee.setRemainingLeaveDaysCounter(employeeDTO.getRemainingLeaveDaysCounter());
+        }
+
+        if (employeeDTO.getDepartmentId() != null) {
+            Department department = departmentRepository.findById(employeeDTO.getDepartmentId())
+                    .orElseThrow(() -> new RuntimeException("Department not found with id: " + employeeDTO.getDepartmentId()));
+            employee.setDepartment(department);
         }
 
         Employee updatedEmployee = employeeRepository.save(employee);

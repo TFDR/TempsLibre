@@ -1,11 +1,18 @@
 package fr.diginamic.tempsLibre.mapper;
 
 import fr.diginamic.tempsLibre.DTO.EmployeeDTO;
+import fr.diginamic.tempsLibre.model.Department;
 import fr.diginamic.tempsLibre.model.Employee;
+import fr.diginamic.tempsLibre.repository.DepartmentRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EmployeeMapper {
+    private final DepartmentRepository departmentRepository;
+
+    public EmployeeMapper(DepartmentRepository departmentRepository) {
+        this.departmentRepository = departmentRepository;
+    }
 
     public Employee toEntity(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
@@ -18,6 +25,13 @@ public class EmployeeMapper {
         employee.setRole(employeeDTO.getRole());
         employee.setStatus(employeeDTO.getStatus());
         employee.setRemainingLeaveDaysCounter(employeeDTO.getRemainingLeaveDaysCounter());
+
+        if (employeeDTO.getDepartmentId() != null) {
+            Department department = departmentRepository.findById(employeeDTO.getDepartmentId())
+                    .orElseThrow(() -> new RuntimeException("Department not found with id: " + employeeDTO.getDepartmentId()));
+            employee.setDepartment(department);
+        }
+
         return employee;
     }
 
@@ -31,6 +45,11 @@ public class EmployeeMapper {
         employeeDTO.setRole(employee.getRole());
         employeeDTO.setStatus(employee.getStatus());
         employeeDTO.setRemainingLeaveDaysCounter(employee.getRemainingLeaveDaysCounter());
+
+        if (employee.getDepartment() != null) {
+            employeeDTO.setDepartmentId(employee.getDepartment().getId());
+        }
+
         return employeeDTO;
     }
 }

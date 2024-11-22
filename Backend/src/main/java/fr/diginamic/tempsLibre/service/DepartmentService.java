@@ -24,13 +24,13 @@ public class DepartmentService {
         this.departmentRepository = departmentRepository;
         this.departmentMapper = departmentMapper;
     }
-    
+
     public DepartmentDTO createDepartment(DepartmentDTO departmentDTO) {
         Department department = departmentMapper.toEntity(departmentDTO);
         Department savedDepartment = departmentRepository.save(department);
         return departmentMapper.toDTO(savedDepartment);
     }
-    
+
     public List<DepartmentDTO> getAll() {
         List<DepartmentDTO> departments
                 = departmentRepository.findAll()

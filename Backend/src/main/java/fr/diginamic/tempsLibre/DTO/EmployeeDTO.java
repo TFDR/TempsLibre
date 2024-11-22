@@ -26,4 +26,6 @@ public class EmployeeDTO {
 
     @Builder.Default
     private Integer remainingLeaveDaysCounter = 25;
+
+    private Long departmentId;
 }
