@@ -57,8 +57,10 @@ public class Employee {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createDate;
 
+    @Builder.Default
     @Column(nullable = false)
     private Boolean isDeleted = false;
+
 
     @Column(nullable = true)
     private LocalDateTime deletedAt;
