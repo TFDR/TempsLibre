@@ -34,4 +34,7 @@ public class Department {
 
     @Column(nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    private List<Employee> employees;
 }
