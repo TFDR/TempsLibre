@@ -2,12 +2,13 @@ package fr.diginamic.tempsLibre.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "RTT_EMPLOYER")
+@Table
 @Data
-public class RttEmployer {
+public class RTTEmployer {
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -18,9 +19,9 @@ public class RttEmployer {
     private String label;
 
     @Column(name = "DATE", nullable = false)
-    private LocalDate date;
+    private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_RTT_EMPLOYER_YEAR", nullable = false)
-    private RttEmployerYear rttEmployerYear;
+    @JoinColumn(name = "ID_RTT_EMPLOYER_YEAR", nullable = true)
+    private RTTEmployerYear idRTTEmployerYear;
 }

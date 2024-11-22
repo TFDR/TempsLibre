@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "RTT_EMPLOYER_YEAR")
+@Table
 @Data
-public class RttEmployerYear {
+public class RTTEmployerYear {
 
     @Id
     @Column(name = "ID", nullable = false)
