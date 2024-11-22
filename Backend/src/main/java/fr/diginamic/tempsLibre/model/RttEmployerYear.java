@@ -19,6 +19,6 @@ public class RttEmployerYear {
     @Column(name = "REMAINING_COUNTER", nullable = false)
     private Integer remainingCounter;
 
-    @Column(name = "YEAR", nullable = false)
-    private Integer year;
+    @Column(name = "RTT_YEAR", nullable = false)
+    private Integer rttYear;
 }

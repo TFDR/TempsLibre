@@ -5,14 +5,14 @@ import fr.diginamic.tempsLibre.model.RttEmployerYear;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RTTEmployerYearMapper {
+public class RttEmployerYearMapper {
 
     public RttEmployerYear toEntity(RttEmployerYearDTO rttEmployerYearDTO) {
         RttEmployerYear rttEmployerYear =new RttEmployerYear();
         rttEmployerYear.setId(rttEmployerYearDTO.getId());
         rttEmployerYear.setInitialCounter(rttEmployerYearDTO.getInitialCounter());
         rttEmployerYear.setRemainingCounter(rttEmployerYearDTO.getRemainingCounter());
-        rttEmployerYear.setYear(rttEmployerYearDTO.getYear());
+        rttEmployerYear.setRttYear(rttEmployerYearDTO.getRttYear());
         return rttEmployerYear;
     }
 
@@ -21,7 +21,7 @@ public class RTTEmployerYearMapper {
         rttEmployerYearDTO.setId(rttEmployerYear.getId());
         rttEmployerYearDTO.setInitialCounter(rttEmployerYear.getInitialCounter());
         rttEmployerYearDTO.setRemainingCounter(rttEmployerYear.getRemainingCounter());
-        rttEmployerYearDTO.setYear(rttEmployerYear.getYear());
+        rttEmployerYearDTO.setRttYear(rttEmployerYear.getRttYear());
         return rttEmployerYearDTO;
     }
 }
