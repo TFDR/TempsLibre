@@ -24,15 +24,14 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "departments")
+@Table(name = "DEPARTMENT")
 public class Department {
 
     @Id
-    @Column(nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private String name;
-
 }
