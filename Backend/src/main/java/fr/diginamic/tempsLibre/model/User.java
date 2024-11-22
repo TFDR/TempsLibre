@@ -70,7 +70,7 @@ public class User {
     @Column(nullable = false)
     private Integer remainingLeaveDaysCounter = 25;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="department_id", nullable=false)
     private Department department;
 }

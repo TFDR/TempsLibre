@@ -35,11 +35,4 @@ public class Department {
     @Column(nullable = false)
     private String name;
 
-    /*//mangers
-    @OneToMany(mappedBy = "departmentManaged")
-    private List<User> managers;*/
-
-    //employees
-    @OneToMany(mappedBy = "department",fetch = FetchType.LAZY)
-    private Set<User> employees;
 }
