@@ -43,10 +43,4 @@ public class DepartmentController {
         DepartmentDTO createdDepartment = departmentService.createDepartment(departmentDTO);
         return ResponseEntity.ok(createdDepartment);
     }
-
-    @PatchMapping("/{id}")
-    public ResponseEntity<DepartmentDTO> updateDepartment(@PathVariable Long id, @RequestBody DepartmentDTO departmentDTO) {
-            DepartmentDTO updatedDepartment = departmentService.(id, departmentDTO);
-            return ResponseEntity.ok(updatedDepartment);
-    }
 }
